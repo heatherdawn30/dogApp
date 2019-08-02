@@ -12,7 +12,22 @@ function getDogImage() {
 }
 
 function displayResults(responseJson) {
-    console.log(responseJson.message);
+  console.log(responseJson.message);
+
+  //make a blank sting (we are slowly going to add to this)
+  let images = '<div class="images-container">';
+  //go through a loop, and make an HTML image each time
+  for (let i=0; i < imageQuantity; i++) {
+      //and add that image to the end of the string
+      images = images + `<img src="${responseJson.message[i]}" class="results-img">`
+  }
+  images = images + '</div>'
+  console.log(images);
+
+  //now, take that large HTML string and put it into the HTML
+  $('.images-container').replaceWith(images);
+  //display the results section
+  $('.results').removeClass('hidden');
 }
 
 function watchForm() {
